@@ -1,0 +1,673 @@
+export { default as theme } from './src/theme'
+import Emoji from './src/emoji';
+import TallImage from './src/tall-image';
+import AboutMe from './src/about-me';
+import { Appear, Image, Notes } from 'mdx-deck'
+import {darkGreen} from './src/colors';
+
+import { Head } from 'mdx-deck'
+
+<Head>
+  <title>Building a Code Split React App</title>
+</Head>
+
+# Building a Code Split React App
+
+---
+<TallImage src='assets/just-ask.gif' />
+<Notes>
+  I don't know what you're making, I can't promise to double your salary.
+</Notes>
+---
+# Salary Negotiations
+<hr style={{borderColor: darkGreen}} />
+<ul>
+  <Appear>
+    <li>📊 How Stock Works</li>
+    <li>💸 Startup Fundraising</li>
+  </Appear>
+</ul>
+<Notes>
+	<ul>
+    <li>📊 How Stock Works</li>
+    <li>💸 Startup Fundraising</li>
+	</ul>
+</Notes>
+---
+<AboutMe />
+<Notes>
+  <ul>
+    <li>The console log is a weekly podcast about frontend news, we make puns</li>
+    <li>Follow me on twitter, it validates me</li>
+  </ul>
+</Notes>
+---
+<div style={{fontSize: '0.8em'}}>
+
+  # <Emoji name="twitter.png" size={80} /> [@MatthewGerstman](https://twitter.com/MatthewGerstman)
+  <hr style={{borderColor: darkGreen}} />
+  <img style={{ height: '50vh' }} src='assets/follow-me.png' />
+
+</div>
+---
+<TallImage src='assets/dad.jpg' />
+<Notes>
+  <ul>
+    <li>6'4"</li>
+    <li>He's having a bad day when he only lifts once</li>
+    <li>Recently had pneumonia and was mad he couldn't go to the gym</li>
+    <li>He can probably take Ken Wheeler, sorry ken</li>
+    <li>Also a real estate agent</li>
+  </ul>
+</Notes>
+---
+<TallImage src='assets/negotiate-grades.gif' />
+<Notes>
+  <ul>
+    <li>Growing up i'd listen to my dad negotiate</li>
+    <li>Or even better teach clients how to negotiate</li>
+    <li>I internalized this</li>
+    <li>And I actually did negotiate some of my grades</li>
+  </ul>
+</Notes>
+
+---
+# We Need to Talk About Salary
+<Notes>
+  <ul>
+    <li>Before we can talk about negotiation, we have to talk about salary</li>
+  </ul>
+</Notes>
+---
+<TallImage src='assets/uncomfortable.gif' />
+<Notes>
+The media wants you to feel uncomfortable
+</Notes>
+---
+<TallImage src='assets/rich-people.gif' />
+<Notes>
+We make rich people as obnoxious as possible
+</Notes>
+---
+<TallImage src='assets/dobby-sock.gif' />
+<Notes>
+You end up getting screwed
+</Notes>
+
+---
+<div style={{fontSize: '0.70em'}}>
+
+  # Why is this so important?
+ <hr style={{borderColor: darkGreen}} />
+</div>
+
+<div style={{width: '50vw', margin: '0 auto'}}>
+
+  | **Level** | **Salary** |
+  | --------- | --- |
+  | Mid       | $80,000    |
+  | Junior    | $90,000    |
+  | Senior    | $120,000   |
+  | Mid       | $140,000   |
+  | Senior    | $150,000   |
+  | Senior    | $180,000   |
+</div>
+<Notes>
+	<ul>
+		<li>
+  		These are real salaries from a company on glassdoor
+		</li>
+		<li>Note the junior engineer is a college grad, 2+ years to be that level without a CS degree</li>
+	</ul>
+</Notes>
+
+---
+# Negotiations are asymetrical
+<img style={{height: '50vh'}} src='assets/rigged.gif' />
+
+<Notes>
+  Let's talk about how you think about it versus how they think about it
+</Notes>
+---
+# How you're looking at this negotation
+<hr style={{borderColor: darkGreen}} />
+<ul>
+  <Appear>
+    <li>🤑 That's a lot of money.</li>
+    <li>🤔 Am I really worth that much?</li>
+    <li>😕 What if they cancel the offer?</li>
+    <li>🤐 That money has to come from somewhere.</li>
+  </Appear>
+</ul>
+
+<Notes>
+  <ul>
+    <li>🤑 That's a lot of money.</li>
+    <li>🤔 Am I really worth that much?</li>
+    <li>😕 What if they cancel the offer?</li>
+    <li>🤐 That money has to come from somewhere.</li>
+  </ul>
+</Notes>
+
+---
+<div style={{fontSize: '0.75em'}}>
+
+  # How they're looking at this negotation
+  <hr style={{borderColor: darkGreen}} />
+  <ul>
+    <Appear>
+      <li>✍️ I need to close this candidate.</li>
+      <li>🥪 I wonder what's for lunch today.</li>
+      <li>✍️ I need to close this candidate.</li>
+      <li>💰 I'm not spending my own money; I'm spending TechCompany's money.</li>
+      <li>✍️ I need to close this candidate.</li>
+    </Appear>
+  </ul>
+</div>
+<Notes>
+  <ul>
+    <li>️️️️✍️ I need to close this candidate.</li>
+    <li>🥪 I wonder what's for lunch today.</li>
+    <li>✍️ I need to close this candidate.</li>
+    <li>💰 I'm not spending my own money; I'm spending TechCompany's money.</li>
+    <li>✍️ I need to close this candidate.</li>
+  </ul>
+  If you're ever wondering what your recruiter is thinking, here it is.
+</Notes>
+
+---
+<TallImage src='assets/always-be-closing.gif' />
+
+---
+# I'm going to tell you the first secret of negotiating
+---
+
+<TallImage src="assets/are-you-ready-tswift.gif" />
+
+---
+# It's a lot more money to you than it is to them.
+---
+<TallImage src='assets/always.gif' />
+
+---
+# It's a lot more money to you than it is to them.
+---
+# Let's talk about five grand
+<Notes>
+  <ul>
+    <li>A raise takes a whole year, a negotiation takes five minutes</li>
+    <li>Pick up 5 grand in a raise vs negotiation.</li>
+    <li>Let's do another what you're thinking what they're thinking.</li>
+  </ul>
+</Notes>
+---
+# What you're thinking
+<hr style={{borderColor: darkGreen}} />
+<ul>
+  <Appear>
+    <li>🏝 Damn, even after taxes that’s a whole vacation.</li>
+    <li>💰 Five thousand dollars.</li>
+    <li>💸 Seriously, Five thousand dollars.</li>
+    <li>😰 It would be so greedy of me to ask for five whole thousand dollars.</li>
+  </Appear>
+</ul>
+<Notes>
+  <ul>
+    <li>🏝 Damn, even after taxes that’s a whole vacation.</li>
+    <li>💰 Five thousand dollars.</li>
+    <li>💸 Seriously, Five thousand dollars.</li>
+    <li>😰 It would be so greedy of me to ask for five whole thousand dollars.</li>
+  </ul>
+</Notes>
+---
+<TallImage src="assets/too-much.gif" />
+---
+# What they're thinking
+<hr style={{borderColor: darkGreen}} />
+<ul>
+  <Appear>
+    <li>😂 That's it?</li>
+    <li>🤣 I'm going to tell them I have to ask my boss.</li>
+    <li>🙃 Because then it looks like I'm doing them a favor.</li>
+  </Appear>
+</ul>
+<Notes>
+  <ul>
+    <li>😂 That's it?</li>
+    <li>🤣 I'm going to tell them I have to ask my boss.</li>
+    <li>🙃 Because then it looks like I'm doing them a favor.</li>
+  </ul>
+</Notes>
+---
+<TallImage src='assets/jedi-mind-trick.gif' />
+---
+# Appeal to Authority
+---
+<TallImage src="assets/parents-permission.gif" />
+<Notes>
+  <ul>
+    <li>They have to ask their boss?</li>
+    <li>You have to talk to your family!</li>
+    <li>Family can mean literally anything: Spouse, Parent, Sibling, Cat</li>
+    <li>They're not allowed to follow up on who your family is</li>
+    <li>You want to give them a little bit of hesistation</li>
+  </ul>
+</Notes>
+---
+# Next Secret
+---
+<TallImage src="assets/are-you-ready-tswift-2.gif" />
+---
+
+# Don’t talk money until they’re ready to give you an offer
+---
+# Hard mode
+<hr style={{borderColor: darkGreen}} />
+
+# Get them to say a number first.
+---
+<Image src="assets/burning-money.gif" />
+---
+<div style={{fontSize: '0.90em'}}>
+
+# Any number you say will be an immediate upper bound
+<hr style={{borderColor: darkGreen}} />
+
+# any number they say will be a lower bound.
+</div>
+---
+<TallImage src="assets/losing-money.gif" />
+<Notes>
+  <ul>
+    <li>They will chip away at that number throughout the interview process</li>
+    <li>At the beginning you say you want 100k, great</li>
+    <li>First interview they say "you wanted 95, right" and you politely let it happen</li>
+    <li>They will keep doing this until they're about to make an offer</li>
+  </ul>
+</Notes>
+---
+<TallImage src='assets/manipulating.gif' />
+<Notes>
+  <ul>
+    <li>Recognize you're being manipulated</li>
+    <li>Delay this conversation until the offer stage</li>
+    <li>I'm going to teach you the magic words to delay the conversation</li>
+  </ul>
+
+</Notes>
+---
+<TallImage src='assets/leviosa.gif' />
+---
+# Let's wait to see if this is a good fit before we discuss comp.
+---
+# Next Secret
+<Notes>
+At this point I know you can handle secrets
+</Notes>
+---
+<Image src="assets/my-body-is-ready.gif" />
+---
+# Practice saying the biggest number you can with a straight face.
+---
+<TallImage src='assets/dr-evil.gif' />
+<Notes>
+  If you're making a million dollars, I'm the wrong person to go to.
+</Notes>
+---
+<TallImage src='assets/you-got-this.gif' />
+<Notes>
+  <ul>
+    <li>They will inevitably give you less than you ask for</li>
+    <li>so you need to ask for more than you want</li>
+  </ul>
+</Notes>
+---
+# Leverage
+---
+
+# Their goal is to close you
+<hr style={{borderColor: darkGreen}} />
+
+# anything that can prevent that is leverage.
+---
+<TallImage src='assets/swanson-counter.gif' />
+<Notes>
+The best kind of leverage is a counteroffer
+</Notes>
+---
+<div style={{fontSize: '0.75em'}}>
+
+  # Things you can do to get leverage
+  <ul>
+    <Appear>
+      <li>💰 Have a counter offer</li>
+      <li>🤔 Express concern about anything intangible: Start date, team, etc.</li>
+      <li>💰 Have a counter offer</li>
+      <li>😎 Still be actively interviewing elsewere</li>
+      <li>💰 Have a counter offer</li>
+    </Appear>
+  </ul>
+</div>
+<Notes>
+  <ul>
+    <li>🤔 Even if you're okay with it make them think you're giving them something</li>
+    <li>😎 Tech companies are full of themselves, they think if you can pass their interview you can pass anyone's</li>
+  </ul>
+</Notes>
+---
+<img style={{height: '70vh'}} src='assets/recruiter-counter.gif' />
+<Notes>
+  <ul>
+    <li>Common tactic here is to provide an exploding offer</li>
+    <li>This is a trap, to navigate, bring up timeline at the beginning</li>
+    <li>When you first start the interview process say you're interviewing multiple places and you intend to finish all of them</li>
+    <li>That way they can't pull this later</li>
+  </ul>
+</Notes>
+---
+# Let's talk compensation
+---
+# Total compensation
+
+<hr style={{borderColor: darkGreen}} />
+<img style={{height: '65vh'}} src="assets/levels-fyi.png" />
+<Notes>
+  <ul>
+    <li>This is total compansation including salary, stock, bonus</li>
+    <li>Real Google salary for a newgrad</li>
+    <li>top school, two internships</li>
+    <li>Bootcamp grads, you need two years of experience</li>
+    <li>You should be focused on learning as much as possible</li>
+    <li>You can see salaries on levels.fyi</li>
+  </ul>
+</Notes>
+---
+# Base Salary
+---
+<TallImage src='assets/ron-eating.gif' />
+<Notes>
+  <ul>
+    <li>This is what puts food on the table</li>
+    <li>This is the paycheck you get twice a month</li>
+  </ul>
+</Notes>
+---
+# Stock Options
+---
+<TallImage src='assets/mean-girls-limit.gif' />
+<Notes>
+  Startups want you to believe its a winning lottery ticket
+</Notes>
+---
+<TallImage src='assets/lottery.gif' />
+<Notes>
+  <ul>
+    <li>It is a lottery ticket, just a losing one</li>
+    <li>Startups will try and convince you to take less pay because of stock options.</li>
+    <li>Keep in mind if a big company is paying $120,000 plus stock thats worth something, those should be separate</li>
+  </ul>
+</Notes>
+---
+# Stock options are the _option_ to buy stock in the future for today's price
+---
+# Example
+<hr style={{borderColor: darkGreen}} />
+
+# 10,000 Options
+---
+# Strike Price
+<hr style={{borderColor: darkGreen}} />
+
+<div style={{fontSize: '0.7em'}}>
+
+  # The price you pay per share
+  # Example Price: $0.10 per share
+</div>
+---
+# IPO day
+
+<hr style={{borderColor: darkGreen}} />
+<div style={{fontSize: '0.7em'}}>
+
+  # Company is now worth $100 per share
+
+</div>
+<Notes>
+If you can do some fast math you know that's $1,000,000
+</Notes>
+---
+
+<TallImage src='assets/dr-evil.gif' />
+<Notes>
+I'm bringing this back
+</Notes>
+
+---
+# Exercise your options
+<hr style={{borderColor: darkGreen}} />
+
+<ul>
+  <Appear>
+    <li>🛒 This is the process of buying your shares</li>
+    <li>💵 $0.10 ️✖ 10,000 = $1,000</li>
+  </Appear>
+</ul>
+
+<Notes>
+  <ul>
+    <li>🛒 This is the process of buying your shares</li>
+    <li>💵 $0.10 ️✖ 10,000 = $1,000</li>
+  </ul>
+</Notes>
+---
+# 🚨 Taxes
+<hr style={{borderColor: darkGreen}} />
+<ul>
+  <Appear>
+    <li>😭 You're going to pay taxes on the $999,000.</li>
+    <li>🧐 Make sure you can actually sell your options when you exercise them!</li>
+  </Appear>
+</ul>
+
+<Notes>
+<ul>
+  <li>😭 You're going to pay taxes on the $999,000.</li>
+  <li>🧐 Make sure you can actually sell your options when you exercise them!</li>
+  <li>Keep in mind this is unlikely but you need to know this.</li>
+  <li>Most likely in this situation your company will provide basic tax advise</li>
+  <li>On the bright side you get to play the taxpayer card more often</li>
+</ul>
+
+</Notes>
+---
+<TallImage src='assets/taxpayer.gif'/>
+<Notes>
+  <ul>
+    <li>Someone being a jerk when they make more money, thats unheard of</li>
+    <li>But lets talk about how you actually get the shares</li>
+  </ul>
+</Notes>
+---
+<div style={{fontSize: '0.90em'}}>
+
+  # Vesting
+  <hr style={{borderColor: darkGreen}} />
+  <ul>
+    <Appear>
+      <li>💰 The process of getting your shares.</li>
+      <li>📅 Standard deal is 1/4 of shares after 1 year.</li>
+      <li>⏳ You join 01/01/2019, on 01/01/2020 you'll get 2,500 shares.</li>
+      <li>⌚️ After that it vests on some regular schedule (usually quarterly).</li>
+    </Appear>
+  </ul>
+</div>
+<Notes>
+  <ul>
+      <li>💰 The process of getting your shares.</li>
+      <li>📅 Standard deal is 1/4 of shares after 1 year.</li>
+      <li>⏳ You join 01/01/2019, on 01/01/2020 you'll get 2,500 shares.</li>
+      <li>⌚️ After that it vests on some regular schedule (usually quarterly).</li>
+  </ul>
+</Notes>
+---
+# Shares (RSUs)
+<hr style={{borderColor: darkGreen}} />
+<ul>
+  <Appear>
+    <li>💰 These are worth something as soon as you get them!</li>
+    <li>🏢 Hopefully the company is public and you can sell them.</li>
+    <li>⏳ They usually vest the same way as options.</li>
+  </Appear>
+</ul>
+<Notes>
+  <ul>
+    <li>These are uncommon unless the company is about to go public</li>
+    <li>💰 These are worth something as soon as you get them!</li>
+    <li>🏢 Hopefully the company is public and you can sell them.</li>
+    <li>⏳ They usually vest the same way as options.</li>
+  </ul>
+</Notes>
+---
+# Bonuses
+<hr style={{borderColor: darkGreen}} />
+<ul>
+  <li>✍️ Signing - One time bonus for joining.</li>
+  <li>📅 Annual - Usually a percentage of your base salary.</li>
+</ul>
+---
+<TallImage src='assets/cartman-money.gif' />
+<Notes>
+  All of that was total compensation.
+  Let's talk a bit about how funding works.
+</Notes>
+---
+# Startup Funding
+<hr style={{borderColor: darkGreen}} />
+<ul>
+  <li>🙅‍♀️ Seed</li>
+  <li>🤷‍♀️ Series A</li>
+  <li>💁‍♀️ Series B+</li>
+</ul>
+
+---
+# 🙅‍♀️ Seed
+<img style={{height: '65vh'}} src='assets/seed-founders.gif' />
+<Notes>
+  <ul>
+    <li>They've taken less than 1 million in funding </li>
+    <li>Constantly going to have existential crises, means you dont know your job will be there in a year</li>
+    <li>Don't do this unless you know what you're doing</li>
+    <li>You will be expected to be te senior engineer</li>
+  </ul>
+</Notes>
+---
+# 🤷‍♀️ Series A
+<img style={{height: '65vh'}} src='assets/make-it-rain.gif' />
+<Notes>
+  <ul>
+    <li>They've taken tens of millions in funding </li>
+    <li>Should have a real business plan</li>
+    <li>10+ employees</li>
+    <li>Your job will be there in a year, not much more</li>
+  </ul>
+</Notes>
+---
+# 💁‍♀️ Series B+
+<img style={{height: '65vh'}} src='assets/rent-a-swag.gif' />
+<Notes>
+  <ul>
+    <li>Hopefully they've taken about 100 million in funding</li>
+    <li>Will likely be around 2-3 more years</li>
+    <li>50+ employees</li>
+    <li>Check out angellist for their history</li>
+    <li>Series d+ better be a major company otherwise they're just diluting shares</li>
+  </ul>
+</Notes>
+
+---
+# What are we optimizing for?
+<hr style={{borderColor: darkGreen}} />
+<ul>
+  <Appear>
+    <li>😄 Happiness</li>
+    <li>🤑 Money !== 😄 Happiness</li>
+    <li>🤑 Money == 🙃 Comfort</li>
+  </Appear>
+</ul>
+
+<Notes>
+  <ul>
+   <li>😄 Happiness</li>
+    <li>🤑 Money !== 😄 Happiness</li>
+    <li>🤑 Money == 🙃 Comfort</li>
+  </ul>
+</Notes>
+
+---
+<div style={{fontSize: '0.75em'}}>
+
+# What else is important?
+<hr style={{borderColor: darkGreen}} />
+  <ul>
+    <Appear>
+      <li>👩‍🏫 How much are you going to learn?</li>
+      <li>🚴‍♀️Work Life/Balance</li>
+      <li>🏝 PTO</li>
+      <li>👩‍👩‍👦 Parental Leave</li>
+      <li>🤕 My kid is sick, can i work from home?</li>
+      <li>🚃 Commute?</li>
+      <li>🏙 Do you want to live there?</li>
+    </Appear>
+  </ul>
+</div>
+<Notes>
+  <ul>
+    <li>👩‍🏫 How much are you going to learn?</li>
+    <li>🚴‍♀️Work Life/Balance</li>
+    <li>🏝 PTO</li>
+    <li>👩‍👩‍👦 Parental Leave</li>
+    <li>🤕 My kid is sick, can i work from home?</li>
+    <li>🚃 Commute?</li>
+    <li>🏙 Do you want to live there?</li>
+  </ul>
+</Notes>
+---
+# Are there any moral quandaries with the work you're doing?
+<Notes>
+  <ul>
+    <li>We have tech companies doing so much damage in the world right now</li>
+    <li>You can get paid a lot of money to do bad things</li>
+  </ul>
+</Notes>
+---
+
+<TallImage src='assets/swimming-duck.gif' />
+---
+<TallImage src='assets/swimming-peter.gif' />
+---
+<TallImage src='assets/learned-something.gif' />
+<Notes>
+  I hope you learned something today
+</Notes>
+---
+<TallImage src='assets/breaking-bad.gif' />
+<Notes>
+  Get that money
+</Notes>
+---
+<div style={{fontSize: '0.75em'}}>
+
+  # <Emoji name="twitter.png" size={90} /> [@MatthewGerstman](https://twitter.com/MatthewGerstman)
+
+  <hr style={{borderColor: darkGreen}} />
+  <img style={{height: '50vh'}} src='assets/validated.gif' />
+</div>
+---
+<AboutMe />
+---
+# References
+<hr style={{borderColor: darkGreen}} />
+
+1. https://www.kalzumeus.com/2012/01/23/salary-negotiation/
+2. https://levels.fyi
+3. https://angel.co/

@@ -1,23 +1,185 @@
-import { Head, Notes } from 'mdx-deck'
+import { Appear,Code, Head, Image, Notes } from 'mdx-deck'
+import TallImage from './src/tall-image';
+import AboutMe from './src/about-me';
 
-export { theme } from './theme'
+export { default as theme } from './src/theme'
 
 <Head>
-  <title>Presentation Title</title>
+  <title>Building a Code Split React App</title>
 </Head>
 
-# Hello
-
+# Building a Code Split React App
 ---
-
-## Edit this file
-
-To create your presentation
-
-<Notes>
-Create speaker notes with the Notes component
-</Notes>
-
+<AboutMe />
 ---
+# Let’s talk about single page apps
+---
+<TallImage src='assets/timber.gif' />
+---
+<TallImage src='assets/create-react-app.png' />
+---
+<ul>
+  <Appear>
+  <li>create-react-app</li>
+  <li>yarn add redux</li>
+  <li>yarn add typescript</li>
+  <li>yarn add lodash</li>
+  <li>Write a lot of javascript</li>
+  <li>Write a lot of css</li>
+	</Appear>
+</ul>
+---
+<TallImage src='assets/heaviest-objects.jpg' />
+---
+# 10 MB of JavaScript
+---
+<table>
+	<thead>
+		<th>Country</th>
+		<th>Average Speed</th>
+		<th>Time</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>South Korea</td>
+			<td>28.6 Mbps </td>
+			<td>2.80s</td></tr>
+		<tr>
+			<td>Norway</td>
+			<td>23.5 Mbps </td>
+			<td>3.40s</td></tr>
+		<tr>
+			<td>Sweden</td>
+			<td>22.5 Mbps </td>
+			<td>3.56s</td></tr>
+		<tr>
+			<td>Hong Kong</td>
+			<td>21.9 Mbps </td>
+			<td>3.65s</td></tr>
+		<tr>
+			<td> Switzerland</td>
+			<td>21.7 Mbps </td>
+			<td>3.69s</td></tr>
+		<tr>
+			<td>Finland</td>
+			<td>20.5 Mbps </td>
+			<td>3.90s</td></tr>
+		<tr>
+			<td>Singapore</td>
+			<td>20.3 Mbps </td>
+			<td>3.94s</td></tr>
+		<tr>
+			<td>Japan</td>
+			<td>20.2 Mbps </td>
+			<td>3.96s</td></tr>
+		<tr>
+			<td>Denmark</td>
+			<td>20.1 Mbps </td>
+			<td>3.98s</td></tr>
+		<tr>
+			<td>United States</td>
+			<td>18.7 Mbps </td>
+			<td>4.28s</td></tr>
+	</tbody>
+</table>
+---
+# How do we deal with this
+---
+# Code split
+---
+# ONE GIANT BUNDLE GIF
+---
+# Many SMALL BUNDLES GIF
+---
+# This is not new
+---
+- Routes - php, rails, django
+- Vendor (jQuery, Underscore, Backbone) - Cached on every page
+- Page bundle (App Code) - Changes more often
+---
+- We go from synchronous import to async
+  - import → import.then
+---
+```
+	import * as widget from "./widget";
 
-<https://github.com/jxnblk/mdx-deck>
+	function renderWidget() {
+		const container = document.getElementById("widget");
+		if (container !== null) {
+			widget.render(container);
+		}
+	}
+
+	renderWidget();
+```
+---
+```
+	function renderWidget() {
+		const container = document.getElementById("widget");
+		if (container !== null) {
+			import("./widget").then(widget => {
+				widget.render(container);
+			});
+		}
+	}
+
+	renderWidget();
+```
+---
+# React gives us some pretty great wrappers around this
+---
+# Lazy/Suspense
+---
+```
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+
+function MyComponent() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <OtherComponent />
+      </Suspense>
+    </div>
+  );
+}
+```
+---
+These are typesafe!
+---
+# We're done here GIF
+---
+Data Layer
+---
+# Good tooling doesn’t really exist here
+---
+# Requirements
+<ul>
+<Appear>
+  <li>Abstractions around code splitting, consumers shouldn’t *know* we’re code splitting</li>
+  <li>Isolate the integration points (where it isnt typesafe)</li>
+  <li>If it’s not typesafe at compile time we want strong typesafety at runtime</li>
+</Appear>
+</ul>
+---
+- Strong central typing layer
+- getStoreWithReducers
+  - Singleton pattern
+  - Still not a very good abstraction
+- CodeSplitProvider
+  - Now we really abstract it
+- Selector layer enforces types
+  - Show off the sibling production bug
+- Action enforcer middleware
+- Walkthrough of an app that handles this well
+  - Shows how and when code is loaded
+  - Shows how and when types are guaranteed
+---
+Graph were it only knows about what it needs
+---
+We know about everything all the time
+
+# References
+-
+
+https://en.wikipedia.org/wiki/List_of_countries_by_Internet_connection_speeds
+https://mariusschulz.com/blog/typescript-2-4-dynamic-import-expressions

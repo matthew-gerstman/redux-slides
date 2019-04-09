@@ -1,13 +1,17 @@
 {
-  "private": true,
-  "name": "redux-codesplit",
+  "name": "salary-negotiation",
   "version": "1.0.0",
+  "description": "slides for salary negotiation",
+  "main": "slides.mdx",
   "scripts": {
     "start": "mdx-deck deck.mdx",
-    "build": "mdx-deck build deck.mdx",
-    "help": "mdx-deck"
+    "build": "mdx-deck build deck.mdx && cp -R assets/ dist/assets"
   },
-  "devDependencies": {
-    "mdx-deck": "^2.0.9"
+  "author": "Matthew Gerstman",
+  "dependencies": {
+    "css-loader": "^2.0.0",
+    "file-loader": "^2.0.0",
+    "mdx-deck": "^1.8.2",
+    "style-loader": "^0.23.1"
   }
 }
