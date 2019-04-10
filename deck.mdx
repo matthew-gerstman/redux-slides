@@ -18,9 +18,9 @@ export { default as theme } from './src/theme'
 ---
 <TallImage src='assets/create-react-app.png' />
 ---
+## create-react-app
 <ul>
   <Appear>
-  <li>create-react-app</li>
   <li>yarn add redux</li>
   <li>yarn add typescript</li>
   <li>yarn add lodash</li>
@@ -105,22 +105,17 @@ export { default as theme } from './src/theme'
 
 	function renderWidget() {
 		const container = document.getElementById("widget");
-		if (container !== null) {
-			widget.render(container);
-		}
+		widget.render(container);
 	}
 
 	renderWidget();
 ```
 ---
 ```
-	function renderWidget() {
+	async function renderWidget() {
 		const container = document.getElementById("widget");
-		if (container !== null) {
-			import("./widget").then(widget => {
-				widget.render(container);
-			});
-		}
+		const widget = await import("./widget");
+		widget.render(container);
 	}
 
 	renderWidget();
@@ -144,7 +139,10 @@ function MyComponent() {
 }
 ```
 ---
-These are typesafe!
+# These are typesafe!
+<Notes>
+	More on typer later
+</Notes>
 ---
 # We're done here GIF
 ---
@@ -152,6 +150,152 @@ Data Layer
 ---
 # Good tooling doesn’t really exist here
 ---
+# Let's talk about Redux
+---
+# Flux diagram here
+---
+# Vocab
+<Appear>
+	<ul>
+		<li>Namespace/Slice</li>
+		<li>Reducer</li>
+		<li>Action</li>
+		<li>Selector</li>
+		<li>State</li>
+		<li>Store</li>
+	</ul>
+</Appear>
+---
+# Slytherin.dev
+<Notes>
+	bunch of users, show off types of data we can query
+</Notes>
+---
+# Naive Redux Store
+  - Picture of All the namespaces
+  - Picture of All the reducers
+  - Picture of All the actions
+  - Picture of All the selectors
+---
+# Typed Naive Redux
+---
+Reducer function signature
+<Notes>
+each reducer knows every possible action it can receive
+</Notes>
+---
+Selector function signature
+<Notes>
+  our selectors always return the right thing
+</Notes>
+---
+dispatch bad action screenshot
+---
+check bad payload screenshot
+---
+# Naive Redux Store
+  - Picture of All the namespaces
+  - Picture of All the reducers
+  - Picture of All the actions
+  - Picture of All the selectors
+---
+Back to codesplitting
+---
+# Actions are *easy* to codesplit
+<Notes>They're just functions</Notes>
+---
+# Selectors are *easy* to codesplit
+<Notes>They're also just functions</Notes>
+---
+# Reducers are *hard* to codesplit
+Why?
+---
+```
+const store = createStore(
+	reducer,
+	enhancer
+)
+```
+---
+# We need the root reducer at store creation
+---
+# The root reducer is composed of every possible reducer we want to include
+---
+# Dropbox Scale
+---
+# We built this for Dropbox
+<ul>
+	<Appear>
+		<li>200+ engineers working on the same codebase</li>
+		<li>25 Namespaces</li>
+		<li>Any given page might need a permutation of 5-10</li>
+		<li>SF, NY, TLV, SEA</li>
+	</Appear>
+</ul>
+---
+# We can’t guarantee that single a reducer is never expensive.
+<Notes>
+  - Theres nothing stopping a single team from including all of lodash as a dependency in their reducer.
+  - Even if we could, there could be a good reason for it to be expensive
+</Notes>
+---
+# This has to run on every page.
+---
+# We’ve gotta figure out how to codesplit the reducer
+---
+Slytherin.dev homepage, mouse over tweets
+---
+tweets page
+- what reducers are registered
+- what code is on the client
+	- tweetsPage
+	- tweetsReducer
+	- tweetsAction
+---
+navigate Back
+---
+navigate to gifs
+---
+same thing as above + gif stuff
+---
+# How do we build this?
+---
+# What do we want to optimize for?
+---
+# Soundness
+---
+# Works perfectly, or completely breaks, nothing in between
+---
+# Failure Modes
+<ul>
+	<Appear>
+	<li>Silent errors</li>
+	<li>Works on my machine</li>
+	<li>Race conditions</li>
+	</Appear>
+</ul>
+---
+# How do we enforce Soundness
+---
+# Compile Time - Typechecking
+---
+# Runtime - when the code is executing in the browser
+---
+# What are our requirements for this tooling
+---
+# Good developer experience
+<Notes>
+	Abstractions around code splitting, engineers shouldn’t have to think about code splitting when they’re building features.
+</Notes>
+---
+# We should have strong runtime assertions to check data is there, so we can fail fast.
+<Notes>
+	- Feature, not a bug, that any given slice of the state may or may not be available when a selector is called.
+	- We need to isolate where failure modes can happen as a result of codesplitting
+	- We do not want developers to be able to call a selector if a namespace is not registered.
+</Notes>
+
+  -
 # Requirements
 <ul>
 <Appear>
