@@ -9,6 +9,7 @@
   },
   "author": "Matthew Gerstman",
   "dependencies": {
+    "code-surfer": "^0.5.5",
     "css-loader": "^2.0.0",
     "file-loader": "^2.0.0",
     "mdx-deck": "^1.8.2",
