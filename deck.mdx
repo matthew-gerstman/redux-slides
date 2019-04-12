@@ -1,6 +1,7 @@
 import { Appear,Code, Head, Image, Notes } from 'mdx-deck'
 import TallImage from './src/tall-image';
 import AboutMe from './src/about-me';
+import { CodeSurfer } from "mdx-deck-code-surfer"
 
 export { default as theme } from './src/theme'
 
@@ -8,7 +9,7 @@ export { default as theme } from './src/theme'
   <title>Building a Code Split React App</title>
 </Head>
 
-# Building a Code Split React App
+# Building a Typesafe Code Split React-Redux Application
 ---
 <AboutMe />
 ---
@@ -35,9 +36,11 @@ export { default as theme } from './src/theme'
 ---
 <table>
 	<thead>
-		<th>Country</th>
-		<th>Average Speed</th>
-		<th>Time</th>
+		<tr>
+			<td>Country</td>
+			<td>Average Speed</td>
+			<td>Time</td>
+		</tr>
 	</thead>
 	<tbody>
 		<tr>
@@ -87,88 +90,86 @@ export { default as theme } from './src/theme'
 ---
 # Code split
 ---
-# ONE GIANT BUNDLE GIF
+<div style={{height: 500}}>
+	<h2>One Big Synchronous Bundle</h2>
+	<img style={{height: "70%"}} src="assets/giant-bundle.png" />
+</div>
 ---
-# Many SMALL BUNDLES GIF
+<div style={{height: 500}}>
+	<h2>Many Small Lazy Loaded Bundles</h2>
+	<img style={{marginTop: "10%", height: "30%"}} src="assets/multiple-bundles.png" />
+</div>
 ---
 # This is not new
 ---
+<img style={{height: '50%', marginTop: '30%'}} src="assets/frameworks.png" />
+<Notes>
 - Routes - php, rails, django
 - Vendor (jQuery, Underscore, Backbone) - Cached on every page
 - Page bundle (App Code) - Changes more often
+</Notes>
 ---
-- We go from synchronous import to async
-  - import → import.then
+# Async Code Splitting
+<Notes>
+	Only load the javascript we need to load what's on screen right now
+</Notes>
 ---
-```
-	import * as widget from "./widget";
+<CodeSurfer
+  title="Synchronous Import"
+  code={require("!raw-loader!./snippets/import-sync.ts").default}
+  lang="typescript"
+  showNumbers={false}
+  dark={true}
+	steps={[{lines: [1]}]}
+/>
 
-	function renderWidget() {
-		const container = document.getElementById("widget");
-		widget.render(container);
-	}
-
-	renderWidget();
-```
 ---
-```
-	async function renderWidget() {
-		const container = document.getElementById("widget");
-		const widget = await import("./widget");
-		widget.render(container);
-	}
+<CodeSurfer
+  title="Asynchronous Import"
+  code={require("!raw-loader!./snippets/import-async.ts").default}
+  lang="typescript"
+  showNumbers={false}
+  dark={true}
+	steps={[{lines: [3]}]}
+/>
 
-	renderWidget();
-```
 ---
 # React gives us some pretty great wrappers around this
 ---
 # Lazy/Suspense
 ---
-```
-const OtherComponent = React.lazy(() => import('./OtherComponent'));
-
-function MyComponent() {
-  return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <OtherComponent />
-      </Suspense>
-    </div>
-  );
-}
-```
+<CodeSurfer
+  code={require("!raw-loader!./snippets/lazy-suspense.ts").default}
+  lang="typescript"
+  showNumbers={false}
+  dark={true}
+	steps={[{lines: [1,6, 8]}]}
+/>
 ---
 # These are typesafe!
 <Notes>
-	More on typer later
+	More on types later
 </Notes>
 ---
-# We're done here GIF
+<TallImage src="assets/obama-done-here.gif" />
 ---
-Data Layer
+<Image style={{display: "flex", flexDirection: "column", justifyContent: "center"}} src="assets/matrix.gif">
+	<h1>Data Layer</h1>
+</Image>
 ---
 # Good tooling doesn’t really exist here
 ---
-# Let's talk about Redux
+<TallImage style={{padding: 50}} src="assets/redux.png" />
 ---
-# Flux diagram here
+<TallImage style={{padding: 10}} src="assets/data-flow.png" />
 ---
-# Vocab
-<Appear>
-	<ul>
-		<li>Namespace/Slice</li>
-		<li>Reducer</li>
-		<li>Action</li>
-		<li>Selector</li>
-		<li>State</li>
-		<li>Store</li>
-	</ul>
-</Appear>
+<TallImage style={{padding: 10}} src="assets/slices.png" />
+---
+# Namespace == Slice
 ---
 # Slytherin.dev
 <Notes>
-	bunch of users, show off types of data we can query
+	Just cover what the website does
 </Notes>
 ---
 # Naive Redux Store
@@ -204,18 +205,22 @@ Back to codesplitting
 # Actions are *easy* to codesplit
 <Notes>They're just functions</Notes>
 ---
+The same selector code
+---
 # Selectors are *easy* to codesplit
 <Notes>They're also just functions</Notes>
+---
+Action code
 ---
 # Reducers are *hard* to codesplit
 Why?
 ---
-```
-const store = createStore(
-	reducer,
-	enhancer
-)
-```
+<CodeSurfer
+  code={require("!raw-loader!./snippets/create-store").default}
+  lang="typescript"
+  showNumbers={false}
+  dark={true}
+/>
 ---
 # We need the root reducer at store creation
 ---
@@ -258,8 +263,6 @@ navigate to gifs
 ---
 same thing as above + gif stuff
 ---
-# How do we build this?
----
 # What do we want to optimize for?
 ---
 # Soundness
@@ -268,25 +271,21 @@ same thing as above + gif stuff
 ---
 # Failure Modes
 <ul>
-	<Appear>
 	<li>Silent errors</li>
 	<li>Works on my machine</li>
-	<li>Race conditions</li>
-	</Appear>
+	<li>Bugs around render order</li>
 </ul>
+<Notes>
+	Partially loaded state where we don't know what is/isn't loaded.
+</Notes>
 ---
 # How do we enforce Soundness
 ---
-# Compile Time - Typechecking
+# Compile Time
+Typechecking
 ---
-# Runtime - when the code is executing in the browser
----
-# What are our requirements for this tooling
----
-# Good developer experience
-<Notes>
-	Abstractions around code splitting, engineers shouldn’t have to think about code splitting when they’re building features.
-</Notes>
+# Runtime
+When the code is executing in the browser
 ---
 # We should have strong runtime assertions to check data is there, so we can fail fast.
 <Notes>
@@ -294,36 +293,219 @@ same thing as above + gif stuff
 	- We need to isolate where failure modes can happen as a result of codesplitting
 	- We do not want developers to be able to call a selector if a namespace is not registered.
 </Notes>
-
-  -
-# Requirements
+---
+# Good developer experience
 <ul>
-<Appear>
-  <li>Abstractions around code splitting, consumers shouldn’t *know* we’re code splitting</li>
+  <li>Abstractions around code splitting, consumers shouldn’t be worried about it</li>
   <li>Isolate the integration points (where it isnt typesafe)</li>
-  <li>If it’s not typesafe at compile time we want strong typesafety at runtime</li>
-</Appear>
+</ul>
+<Notes>
+	Abstractions around code splitting, engineers shouldn’t have to think about code splitting when they’re building features.
+</Notes>
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/app.tsx").default}
+  lang="typescript"
+  showNumbers={false}
+	title="app.tsx"
+  dark={true}
+	steps={[
+		{},
+		{range: [3, 10]},
+		{range: [18, 22]},
+	]}
+/>
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/gifs-page.tsx").default}
+  lang="typescript"
+  showNumbers={false}
+	title="gifs-page.tsx"
+  dark={true}
+	steps={[
+		{},
+		{lines: [54,56]},
+		{lines: [47, 49]},
+		{lines: [22]},
+	]}
+/>
+---
+
+# Three things developers need to be aware of
+1. CodeSplitProvider
+2. getStateAtNamespace
+3. types.ts
+
+---
+# Developer Experience ✅
+<Notes>
+	Nice experience for the gifs team, remember big company means teams for small features.
+	This has a similar cognitive footprint to Lazy/Suspense.
+</Notes>
+---
+# Hows this work?
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/code-split-provider.tsx").default}
+  lang="typescript"
+  showNumbers={false}
+	title="provider.tsx"
+  dark={true}
+	steps={[
+		{lines: [13, 16]},
+	]}
+/>
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/store.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="store.ts"
+  dark={true}
+	steps={[
+		{},
+		{range: [31, 43]},
+		{range: [34, 42]},
+		{range: [16, 30]},
+		{range: [20, 29]},
+		{tokens: {25: [2], 26: [1]}},
+	]}
+/>
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/gifs-page.tsx").default}
+  lang="typescript"
+  showNumbers={false}
+	title="gifs-page.tsx"
+  dark={true}
+	steps={[
+			{range: [54,56]},
+	]}
+/>
+---
+# What about typing?
+---
+Run time vs compile time chart
+We need a single entrypoint for types
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/types.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="types.ts"
+  dark={true}
+	steps={[
+			{range: [43,50]},
+			{lines: [51]},
+	]}
+/>
+---
+# Selector Layer
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/gifs-selectors.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="gifs/selectors.ts"
+  dark={true}
+	steps={[
+			{range: [4,9]},
+			{lines: [2, 8]},
+	]}
+/>
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/selectors.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="selectors.ts"
+  dark={true}
+	steps={[
+			{range: [3,14]},
+			{range: [3,6]},
+			{range: [7,13]},
+	]}
+/>
+---
+# Actions
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/types.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="types.ts"
+  dark={true}
+	steps={[
+			{range: [4,33]},
+			{range: [5,7]},
+	]}
+/>
+---
+# Tradeoff: Loss of modularization
+<ul>
+	<Appear>
+  <li>typescript just yells at you before you make your commit</li>
+  <li>its out of scope to talk about why this cant be done in a modular way</li>
+  <li>we need to coordinate to prevent conflicts</li>
+	</Appear>
 </ul>
 ---
-- Strong central typing layer
-- getStoreWithReducers
-  - Singleton pattern
-  - Still not a very good abstraction
-- CodeSplitProvider
-  - Now we really abstract it
-- Selector layer enforces types
-  - Show off the sibling production bug
-- Action enforcer middleware
-- Walkthrough of an app that handles this well
-  - Shows how and when code is loaded
-  - Shows how and when types are guaranteed
+<CodeSurfer
+  code={require("!raw-loader!./snippets/types.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="types.ts"
+  dark={true}
+	steps={[
+			{range: [57,65]},
+			{range: [86,91]},
+			{range: [68,84]},
+	]}
+/>
 ---
-Graph were it only knows about what it needs
+<CodeSurfer
+  code={require("!raw-loader!./snippets/gifs-types.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="gifs/types.ts"
+  dark={true}
+	steps={[
+			{},
+			{range: [28,31]},
+			{range: [16,27]},
+	]}
+/>
 ---
-We know about everything all the time
-
-# References
--
-
-https://en.wikipedia.org/wiki/List_of_countries_by_Internet_connection_speeds
-https://mariusschulz.com/blog/typescript-2-4-dynamic-import-expressions
+<CodeSurfer
+  code={require("!raw-loader!./snippets/gifs-reducer.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="gifs/reudcer.ts"
+  dark={true}
+	steps={[
+			{},
+			{range: [6,9]},
+			{range: [13,31]},
+			{range: [14,19]},
+	]}
+/>
+---
+# Typesafety is garaunteed by our single entrypoint for typescript
+---
+# What have we accomplished
+<ul>
+	<Appear>
+  	<li>we’ve codesplit our reducer</li>
+  	<li>we have these guarantees around soundness</li>
+  	<li>we have strong typing to prevent modules from clobbering each oter</li>
+	</Appear>
+</ul>
+---
+# Thank You!
+---
+<AboutMe />
+<Notes>
+	# References
+	https://en.wikipedia.org/wiki/List_of_countries_by_Internet_connection_speeds
+	https://mariusschulz.com/blog/typescript-2-4-dynamic-import-expressions
+</Notes>

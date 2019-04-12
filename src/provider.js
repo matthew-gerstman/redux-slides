@@ -1,12 +1,12 @@
 import React, {Fragment, Component} from 'react';
-import styled, {injectGlobal} from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 import {modes} from 'mdx-deck/dist/constants';
 import Footer from './footer';
 import {lightBlue} from './colors';
 
 const footerHeight = '80px';
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800');
 	a {
 		color: white;
@@ -16,11 +16,15 @@ injectGlobal`
 	ul {
 		list-style: none;
 		text-align: left;
-		font-size: 1.5em;				
+		font-size: 1.5em;
 	}
 
 	li {
 		padding-top: 10px;
+	}
+	h1 {
+		text-transform: uppercase;
+		font-size: 3em;
 	}
 `;
 
@@ -42,7 +46,7 @@ const Bar = styled.div`
   bottom: ${footerHeight};
 `;
 
-export default class Provider extends Component {
+export default class Provider extends React.Component {
   render() {
     const {children, mode, index, length, update} = this.props;
 
@@ -52,6 +56,7 @@ export default class Provider extends Component {
 
     return (
       <Fragment>
+        <GlobalStyle />
         <Wrapper>{children}</Wrapper>
         <Bar size={(index + 1) / length} />
         <Footer height={footerHeight} />
