@@ -1,11 +1,11 @@
 {
-  "name": "salary-negotiation",
+  "name": "redux-codesplit",
   "version": "1.0.0",
-  "description": "slides for salary negotiation",
+  "description": "Slides for building a codesplit redux app",
   "main": "slides.mdx",
   "scripts": {
     "start": "mdx-deck deck.mdx",
-    "build": "mdx-deck build deck.mdx && cp -R assets/ dist/assets"
+    "build": "mdx-deck build --no-html deck.mdx && cp -R assets/ dist/assets"
   },
   "author": "Matthew Gerstman",
   "dependencies": {
