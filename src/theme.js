@@ -17,7 +17,6 @@ export default {
   h1: {
     textTransform: 'uppercase',
   },
-  h2: {},
   p: {},
   weights: 400,
   img: {

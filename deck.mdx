@@ -1,25 +1,30 @@
-import { Appear,Code, Head, Image, Notes } from 'mdx-deck'
+import {Appear, Code, Head, Image, Notes} from 'mdx-deck';
 import TallImage from './src/tall-image';
 import AboutMe from './src/about-me';
-import { CodeSurfer } from "mdx-deck-code-surfer"
+import {CodeSurfer} from 'mdx-deck-code-surfer';
 
-export { default as theme } from './src/theme'
+export {default as theme} from './src/theme';
 
 <Head>
   <title>Building a Code Split React App</title>
 </Head>
 
 # Building a Typesafe Code Split React-Redux Application
+
 ---
-<AboutMe />
----
+
+## <AboutMe />
+
 # Let’s talk about single page apps
+
 ---
-<TallImage src='assets/timber.gif' />
----
-<TallImage src='assets/create-react-app.png' />
----
+
+## <TallImage src='assets/timber.gif' />
+
+## <TallImage src='assets/create-react-app.png' />
+
 ## create-react-app
+
 <ul>
   <Appear>
   <li>yarn add redux</li>
@@ -124,20 +129,26 @@ export { default as theme } from './src/theme'
 />
 
 ---
+
 <CodeSurfer
   title="Asynchronous Import"
-  code={require("!raw-loader!./snippets/import-async.ts").default}
+  code={require('!raw-loader!./snippets/import-async.ts').default}
   lang="typescript"
   showNumbers={false}
   dark={true}
-	steps={[{lines: [3]}]}
+  steps={[{lines: [3]}]}
 />
 
 ---
+
 # React gives us some pretty great wrappers around this
+
 ---
+
 # Lazy/Suspense
+
 ---
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/lazy-suspense.ts").default}
   lang="typescript"
@@ -163,7 +174,7 @@ export { default as theme } from './src/theme'
 ---
 <TallImage style={{padding: 10}} src="assets/data-flow.png" />
 ---
-<TallImage style={{padding: 10}} src="assets/slices.png" />
+<img style={{padding: 10, maxWidth:'100vw'}} src="assets/slices.png" />
 ---
 # Namespace == Slice
 ---
@@ -172,48 +183,68 @@ export { default as theme } from './src/theme'
 	Just cover what the website does
 </Notes>
 ---
-# Naive Redux Store
-  - Picture of All the namespaces
-  - Picture of All the reducers
-  - Picture of All the actions
-  - Picture of All the selectors
+<h2>Naive Implementation</h2>
+<img style={{maxHeight:'70vh'}} src="assets/naive-redux.png" />
 ---
-# Typed Naive Redux
+<CodeSurfer
+  code={require("!raw-loader!./snippets/naive.ts").default}
+  lang="typescript"
+  showNumbers={false}
+  dark={true}
+	steps={[
+    {range: [6,13], title: "State Shape"},
+    {range: [1,4], title: "Namespaces"},
+    {range: [15,18], title: "Actions"},
+    {range: [20,28], title: "Root Reducer"},
+    {range: [30,36], title: "Gifs Reducer"},
+    {range: [37,39], title: "Gifs Selector", note:"our selectors always return the right thing"},
+  ]}
+/>
 ---
-Reducer function signature
-<Notes>
-each reducer knows every possible action it can receive
-</Notes>
+<CodeSurfer
+  code={require("!raw-loader!./snippets/safety.ts").default}
+  lang="typescript"
+  showNumbers={false}
+  dark={true}  
+	steps={[
+    {range: [1,9], title: "Typing Wins"},
+    {range: [10,15], title: "Actions"},
+    {range: [17,22], title: "Selectors"},
+    {range: [24,32], title: "Reducer"},
+    {range: [28,44], title: "Reducer"},
+  ]}
+/>
 ---
-Selector function signature
-<Notes>
-  our selectors always return the right thing
-</Notes>
+<h2>Naive Implementation</h2>
+<img style={{maxHeight:'70vh'}} src="assets/naive-redux.png" />
 ---
-dispatch bad action screenshot
----
-check bad payload screenshot
----
-# Naive Redux Store
-  - Picture of All the namespaces
-  - Picture of All the reducers
-  - Picture of All the actions
-  - Picture of All the selectors
----
-Back to codesplitting
+# Code Splitting
 ---
 # Actions are *easy* to codesplit
-<Notes>They're just functions</Notes>
 ---
-The same selector code
+<CodeSurfer
+  code={require("!raw-loader!./snippets/simple-action.ts").default}
+  lang="typescript"
+  showNumbers={false}
+  dark={true}  	
+  steps={[
+    {range: [1,9]},    
+  ]}
+/>
 ---
-# Selectors are *easy* to codesplit
-<Notes>They're also just functions</Notes>
+# Selectors are _easy_ to codesplit
 ---
-Action code
+<CodeSurfer
+  code={require("!raw-loader!./snippets/simple-selector.ts").default}
+  lang="typescript"
+  showNumbers={false}
+  dark={true}    
+	steps={[
+    {range: [1,9]},
+  ]}
+/>
 ---
-# Reducers are *hard* to codesplit
-Why?
+# Reducers are _hard_ to codesplit
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/create-store").default}
@@ -224,7 +255,10 @@ Why?
 ---
 # We need the root reducer at store creation
 ---
-# The root reducer is composed of every possible reducer we want to include
+<TallImage src="assets/root-reducer.png" />
+<Notes>
+  The root reducer is composed of every possible reducer we want to include
+</Notes>
 ---
 # Dropbox Scale
 ---
@@ -239,6 +273,8 @@ Why?
 </ul>
 ---
 # We can’t guarantee that single a reducer is never expensive.
+---
+<TallImage src="assets/root-reducer.png" />
 <Notes>
   - Theres nothing stopping a single team from including all of lodash as a dependency in their reducer.
   - Even if we could, there could be a good reason for it to be expensive
@@ -248,20 +284,22 @@ Why?
 ---
 # We’ve gotta figure out how to codesplit the reducer
 ---
-Slytherin.dev homepage, mouse over tweets
+# Slytherin.dev
+<img style={{height: '60vh'}} src="assets/taylor.png" />
+<img style={{height: '60vh', marginLeft: '50px'}} src="assets/empty-store.png" />
 ---
-tweets page
-- what reducers are registered
-- what code is on the client
-	- tweetsPage
-	- tweetsReducer
-	- tweetsAction
+# Navigate to Twitter Page
+<img style={{height: '60vh'}} src="assets/taylor-tweets.png" />
+<img style={{height: '60vh', marginLeft: '50px'}} src="assets/state-twitter.png" />
 ---
-navigate Back
----
-navigate to gifs
----
-same thing as above + gif stuff
+# Navigate to Gifs Page
+<div style={{display: 'flex', justifyContent: "center", margin: '0 auto'}}>
+  <div style={{background: '#036452', padding: 20, width: 'calc(30vw + 40px)'}}>
+    <img style={{width: '30vw'}} src="assets/taylor-side-eye.gif" />
+    <img style={{width: '30vw'}} src="assets/taylor-snakes.gif" />
+  </div>
+  <img style={{height: '60vh', marginLeft: '50px'}} src="assets/state-tweets-gifs.png" />
+</div>
 ---
 # What do we want to optimize for?
 ---
@@ -282,10 +320,14 @@ same thing as above + gif stuff
 # How do we enforce Soundness
 ---
 # Compile Time
-Typechecking
+<Notes>
+  Typechecking
+</Notes>
 ---
 # Runtime
-When the code is executing in the browser
+<Notes>
+  When the code is executing in the browser
+</Notes>
 ---
 # We should have strong runtime assertions to check data is there, so we can fail fast.
 <Notes>
@@ -297,7 +339,7 @@ When the code is executing in the browser
 # Good developer experience
 <ul>
   <li>Abstractions around code splitting, consumers shouldn’t be worried about it</li>
-  <li>Isolate the integration points (where it isnt typesafe)</li>
+  <li>Isolate the integration points (anywhere it isnt typesafe)</li>
 </ul>
 <Notes>
 	Abstractions around code splitting, engineers shouldn’t have to think about code splitting when they’re building features.
@@ -311,8 +353,9 @@ When the code is executing in the browser
   dark={true}
 	steps={[
 		{},
-		{range: [3, 10]},
-		{range: [18, 22]},
+		{range: [14, 25]},
+		{range: [35, 49]},
+    {lines: [39, 40, 41, 45, 46, 47]},
 	]}
 />
 ---
@@ -332,12 +375,15 @@ When the code is executing in the browser
 ---
 
 # Three things developers need to be aware of
+
 1. CodeSplitProvider
 2. getStateAtNamespace
 3. types.ts
 
 ---
+
 # Developer Experience ✅
+
 <Notes>
 	Nice experience for the gifs team, remember big company means teams for small features.
 	This has a similar cognitive footprint to Lazy/Suspense.
@@ -364,11 +410,11 @@ When the code is executing in the browser
   dark={true}
 	steps={[
 		{},
-		{range: [31, 43]},
-		{range: [34, 42]},
-		{range: [16, 30]},
-		{range: [20, 29]},
-		{tokens: {25: [2], 26: [1]}},
+		{range: [34, 46]},
+		{range: [37, 43]},
+		{range: [18, 33]},
+		{range: [23, 32]},
+		{tokens: {28: [2], 29: [1]}},
 	]}
 />
 ---
@@ -385,8 +431,8 @@ When the code is executing in the browser
 ---
 # What about typing?
 ---
-Run time vs compile time chart
-We need a single entrypoint for types
+<h2>Runtime vs Compile Time</h2>
+<img style={{height: '70vh'}} src="assets/runtime-vs-compiletime.png" />
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/types.ts").default}
@@ -423,12 +469,101 @@ We need a single entrypoint for types
 	steps={[
 			{range: [3,14]},
 			{range: [3,6]},
-			{range: [7,13]},
+			{lines: [4]},
 	]}
 />
 ---
-# Actions
+<CodeSurfer
+  code={require("!raw-loader!./snippets/types.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="types.ts"
+  dark={true}
+	steps={[
+			{range: [43,51]},			
+	]}
+/>
 ---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/selectors.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="selectors.ts"
+  dark={true}
+	steps={[
+      {lines: [4]},
+			{tokens: {1:[3,5], 4: [2], 6: [3], 7:[4]}},
+      {tokens: {1:[7], 3:[6,7,8,9,10], 5: [3], 6: [5], 7:[6]}},
+	]}
+/>
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/types.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="types.ts"
+  dark={true}
+	steps={[
+			{lines: [53]},
+      {tokens: {
+        44: [2],
+        45: [2],
+        46: [2],
+        47: [2],
+        48: [2],
+        49: [2],
+      }}
+	]}
+/>
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/selectors.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="selectors.ts"
+  dark={true}
+	steps={[
+      {tokens: {1:[7], 3:[6,7,8,9,10], 5: [3], 6: [5], 7:[6]}},
+      {tokens: {6: [3,4,5,6], 7:[4,5,6,7]}},
+	]}
+/>
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/types.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="types.ts"
+  dark={true}
+	steps={[			
+      {tokens: {
+        44: [5],
+        45: [5],
+        46: [5],
+        47: [5],
+        48: [5],
+        49: [5],
+      }}
+	]}
+/>
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/selectors.ts").default}
+  lang="typescript"
+  showNumbers={false}
+	title="selectors.ts"
+  dark={true}
+	steps={[
+      {lines: [7]},      
+      {range: [9,11]},   
+      {lines: [13]},         
+	]}
+/>
+---
+
+# Actions
+
+---
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/types.ts").default}
   lang="typescript"
@@ -442,13 +577,13 @@ We need a single entrypoint for types
 />
 ---
 # Tradeoff: Loss of modularization
-<ul>
-	<Appear>
-  <li>typescript just yells at you before you make your commit</li>
-  <li>its out of scope to talk about why this cant be done in a modular way</li>
-  <li>we need to coordinate to prevent conflicts</li>
-	</Appear>
-</ul>
+<Notes>
+  <ul>
+    <li>typescript just yells at you before you make your commit</li>
+    <li>its out of scope to talk about why this cant be done in a modular way</li>
+    <li>we need to coordinate to prevent conflicts</li>	
+  </ul>
+</Notes>
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/types.ts").default}
@@ -495,9 +630,9 @@ We need a single entrypoint for types
 # What have we accomplished
 <ul>
 	<Appear>
-  	<li>we’ve codesplit our reducer</li>
-  	<li>we have these guarantees around soundness</li>
-  	<li>we have strong typing to prevent modules from clobbering each oter</li>
+  	<li>We’ve codesplit our reducer</li>
+  	<li>We have these guarantees around soundness</li>
+  	<li>We have strong typing to prevent modules from clobbering each other</li>
 	</Appear>
 </ul>
 ---

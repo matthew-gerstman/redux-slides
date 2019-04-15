@@ -25,7 +25,10 @@ const GlobalStyle = createGlobalStyle`
 	h1 {
 		text-transform: uppercase;
 		font-size: 3em;
-	}
+  }
+	h2 {
+		text-transform: uppercase;
+  }
 `;
 
 const Wrapper = styled.main`
