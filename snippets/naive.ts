@@ -22,8 +22,8 @@ function rootReducer(
   action: AllActions
 ) {
   return {
-    [GIPHY]: gifsReducer(state[GIPHY])
-    /* Other Sliecs */
+    [GIPHY]: gifsReducer(state[GIPHY], action)
+    /* Other Slices */
   };
 }
 

@@ -1,4 +1,6 @@
 import {Appear, Code, Head, Image, Notes} from 'mdx-deck';
+import {AppearList} from './src/appear-list';
+import {NotesList} from './src/notes-list';
 import TallImage from './src/tall-image';
 import AboutMe from './src/about-me';
 import {CodeSurfer} from 'mdx-deck-code-surfer';
@@ -31,19 +33,20 @@ export {default as theme} from './src/theme';
 
 ## create-react-app
 
-<ul>
-  <Appear>
+<AppearList>
   <li>yarn add redux</li>
   <li>yarn add typescript</li>
   <li>yarn add lodash</li>
   <li>Write a lot of javascript</li>
   <li>Write a lot of css</li>
-	</Appear>
-</ul>
+</AppearList>
 ---
 <TallImage src='assets/heaviest-objects.jpg' />
 ---
 # 10 MB of JavaScript
+<Notes>
+  While this might not seem big in the world of HD streaming, this is actually quite big
+</Notes>
 ---
 <table>
 	<thead>
@@ -105,24 +108,46 @@ export {default as theme} from './src/theme';
 	<h2>One Big Synchronous Bundle</h2>
 	<img style={{height: "70%"}} src="assets/giant-bundle.png" />
 </div>
+<Notes>
+  <ul>
+    <li>This is the entire 10MB</li>
+    <li>We wait for the entire bundle to load</li>
+    <li>The one advantage here is once this loads we have all our JS</li>
+  </ul>
+</Notes>
 ---
 <div style={{height: 500}}>
 	<h2>Many Small Lazy Loaded Bundles</h2>
 	<img style={{marginTop: "10%", height: "30%"}} src="assets/multiple-bundles.png" />
 </div>
+<Notes>
+  <ul>
+    <li>Each bundle is small</li>
+    <li>Vendor bundle contains React/Redux/Lodash whatever</li>
+    <li>We load the page when we need them, or at least make sure they don't block what we do need</li>    
+  </ul>
+</Notes>
+
 ---
+
 # This is not new
+
 ---
+
 <img style={{height: '50%', marginTop: '30%'}} src="assets/frameworks.png" />
 <Notes>
-- Routes - php, rails, django
-- Vendor (jQuery, Underscore, Backbone) - Cached on every page
-- Page bundle (App Code) - Changes more often
+<ul>
+  <li>Routes - php, rails, django </li>
+  <li>Vendor (jQuery, Underscore, Backbone) - Cached on every page</li>
+  <li>Page bundle (App Code) - Changes more often</li>
+</ul>
 </Notes>
 ---
 # Async Code Splitting
 <Notes>
-	Only load the javascript we need to load what's on screen right now
+  <ul>
+    <li>The main thing that's changed is most of our code lives in the browser</li>
+  </ul>	
 </Notes>
 ---
 <CodeSurfer
@@ -179,14 +204,35 @@ export {default as theme} from './src/theme';
 <TallImage style={{padding: 50}} src="assets/redux.png" />
 ---
 <TallImage style={{padding: 10}} src="assets/data-flow.png" />
+<Notes>
+  <ul>
+    <li>State - The dictionary/map (key/value) object that stores all of our data</li>
+    <li>View - The react layer rendering from state, taken as props</li>
+    <li>Action - Events, deltas emitted by the view</li>
+    <li>Reducer - Receives actions and updates the state</li>
+    <li>Store - the combination of Reducer + State + Dispatch</li>
+  </ul>	
+</Notes>
 ---
 <img style={{padding: 10, maxWidth:'100vw'}} src="assets/slices.png" />
+<Notes>
+  <ul>
+    <li>Root Reducer is the only reducer redux knows about</li>
+    <li>It's built of many smaller reducers called slices or namespaces</li>
+    <li>A single action comes in and the root reducer gives it to every inner reducer</li>
+    <li>This state is then combined into the big state object we read</li>
+    <li>Which is also broken up into various slices</li>
+  </ul>	
+</Notes>
 ---
 # Namespace == Slice
----
-# Slytherin.dev
 <Notes>
-	Just cover what the website does
+  Just a bit of terminalogy to keep myself out of trouble.
+</Notes>
+---
+# Demo: Slytherin.dev
+<Notes>
+	Swap tabs to live demo, only show what it does
 </Notes>
 ---
 <h2>Naive Implementation</h2>
@@ -206,6 +252,16 @@ export {default as theme} from './src/theme';
     {range: [37,39], title: "Gifs Selector", note:"our selectors always return the right thing"},
   ]}
 />
+<Notes>
+  <ul>
+    <li>State Shape</li>
+    <li>Namespaces</li>
+    <li>Actions - Discriminated Union of All Action types</li>
+    <li>Root Reducer - We're just gonna show the giphy namespace</li>
+    <li>Gifs Reducer</li>
+    <li>Gifs Selector</li>
+  </ul>	
+</Notes>
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/safety.ts").default}
@@ -213,13 +269,31 @@ export {default as theme} from './src/theme';
   showNumbers={false}
   dark={true}  
 	steps={[
-    {range: [1,9], title: "Typing Wins"},
+    {range: [1,9], title: "Wins From Typing"},
     {range: [10,15], title: "Actions"},
     {range: [17,22], title: "Selectors"},
-    {range: [24,32], title: "Reducer"},
+    {range: [28, 32], title: "Reducer"},
     {range: [28,44], title: "Reducer"},
+    {lines: [34], title: "FetchGifs"},
+    {range: [24,28], title: "FetchGifs"},
+    {lines: [25], title: "FetchGifs"},
+    {lines: [26], title: "FetchGifs"},
+    {range: [34,41], title: "Reducer"},
+    {range: [37,38], title: "Reducer"},
+    {range: [39,40], title: "Reducer"},
+    {range: [34,41], title: "Reducer"},
   ]}
 />
+
+<Notes>
+  <ul>
+    <li>Store is statically typed with a dispatch function that knows shape and all possible actions</li>
+    <li>Actions - We can only dispatch actions we know about</li>    
+    <li>Selectors - We can only access data we know about</li>
+    <li>Reducer signature - knows the shape of the namespace and all possible actions</li>
+    <li>Deep dive into FetchGifs </li>    
+  </ul>	
+</Notes>
 ---
 <h2>Naive Implementation</h2>
 <img style={{maxHeight:'70vh'}} src="assets/naive-redux.png" />
@@ -252,14 +326,15 @@ export {default as theme} from './src/theme';
 ---
 # Reducers are _hard_ to codesplit
 ---
+# We need the root reducer at store creation
+---
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/create-store").default}
   lang="typescript"
   showNumbers={false}
   dark={true}
 />
----
-# We need the root reducer at store creation
 ---
 <TallImage src="assets/root-reducer.png" />
 <Notes>
@@ -269,28 +344,32 @@ export {default as theme} from './src/theme';
 # Dropbox Scale
 ---
 # We built this for Dropbox
-<ul>
-	<Appear>
+<AppearList>
 		<li>200+ engineers working on the same codebase</li>
 		<li>25 Namespaces</li>
 		<li>Any given page might need a permutation of 5-10</li>
 		<li>SF, NY, TLV, SEA</li>
-	</Appear>
-</ul>
+</AppearList>
+---
+# This has to run on every page.
 ---
 # We can’t guarantee that single a reducer is never expensive.
 ---
 <TallImage src="assets/root-reducer.png" />
 <Notes>
-  - Theres nothing stopping a single team from including all of lodash as a dependency in their reducer.
-  - Even if we could, there could be a good reason for it to be expensive
+  <ul>
+    <li>Theres nothing stopping a single team from including all of lodash as a dependency in their reducer.</li>
+    <li>Even if we could, there could be a good reason for it to be expensive</li>
+  </ul>
 </Notes>
 ---
-# This has to run on every page.
----
+
 # We’ve gotta figure out how to codesplit the reducer
+
 ---
+
 # Slytherin.dev
+
 <img style={{height: '60vh'}} src="assets/taylor.png" />
 <img style={{height: '60vh', marginLeft: '50px'}} src="assets/empty-store.png" />
 ---
@@ -378,19 +457,13 @@ export {default as theme} from './src/theme';
 />
 ---
 
-# Three things developers need to be aware of
-
-1. CodeSplitProvider
-2. getStateAtNamespace
-3. types.ts
-
----
-
 # Developer Experience ✅
 
 <Notes>
-	Nice experience for the gifs team, remember big company means teams for small features.
-	This has a similar cognitive footprint to Lazy/Suspense.
+  <ul>
+    <li>This has a similar cognitive footprint to Lazy/Suspense.</li>
+    <li>Nice experience for the gifs team, remember big company means teams for small features.</li>
+  </ul>	
 </Notes>
 ---
 # Hows this work?
@@ -402,9 +475,14 @@ export {default as theme} from './src/theme';
 	title="provider.tsx"
   dark={true}
 	steps={[
+    {range: [9, 18]},
 		{lines: [13, 16]},
 	]}
 />
+<NotesList>
+<li>Codesplit provider</li>
+<li>getStoreAndRegisterReducers + react/redux provider</li>
+</NotesList>
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/store.ts").default}
@@ -420,6 +498,13 @@ export {default as theme} from './src/theme';
 		{tokens: {28: [2], 29: [1]}},
 	]}
 />
+<NotesList>
+  <li>getStoreAndRegisterReducers</li>
+  <li>getStoreAndRegisterReducers body</li>
+  <li>registerReducers</li>
+  <li>registerReducers body</li>
+  <li>replaceReducer + combineReducer</li>
+</NotesList>
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/gifs-page.tsx").default}
@@ -448,9 +533,18 @@ export {default as theme} from './src/theme';
 			{lines: [51]},
 	]}
 />
+<NotesList>
+  <li>FullStore</li>
+  <li>StoreShape</li>
+</NotesList>
 ---
 # Selector Layer
+<NotesList>
+  <li>This is the single point of failure</li>
+</NotesList>
+
 ---
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/gifs-selectors.ts").default}
   lang="typescript"
@@ -462,7 +556,13 @@ export {default as theme} from './src/theme';
 			{lines: [2, 8]},
 	]}
 />
+<NotesList>
+  <li>getGifsForId</li>
+  <li>getStateAtNamespace</li>
+</NotesList>
+
 ---
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/selectors.ts").default}
   lang="typescript"
@@ -475,6 +575,11 @@ export {default as theme} from './src/theme';
 			{lines: [4]},
 	]}
 />
+<NotesList>
+  <li>getStateAtNamespace</li>
+  <li>Function Signature</li>
+  <li>state: StoreShape</li>
+</NotesList>
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/types.ts").default}
@@ -499,7 +604,14 @@ export {default as theme} from './src/theme';
       {tokens: {1:[7], 3:[6,7,8,9,10], 5: [3], 6: [5], 7:[6]}},
 	]}
 />
+<NotesList>
+  <li>state: StoreShape</li>
+  <li>StoreShape + FullStore</li>
+  <li>K extends NamesapceKey</li>
+</NotesList>
+
 ---
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/types.ts").default}
   lang="typescript"
@@ -518,7 +630,13 @@ export {default as theme} from './src/theme';
       }}
 	]}
 />
+<NotesList>
+  <li>NamespaceKey = keyof StoreShape</li>
+  <li>Discriminated Union Of these types</li>
+</NotesList>
+
 ---
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/selectors.ts").default}
   lang="typescript"
@@ -530,7 +648,13 @@ export {default as theme} from './src/theme';
       {tokens: {6: [3,4,5,6], 7:[4,5,6,7, 12,13,14]}},
 	]}
 />
+<NotesList>
+  <li>K extends NamesapceKey</li>
+  <li>FullStore[K]</li>
+</NotesList>
+
 ---
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/types.ts").default}
   lang="typescript"
@@ -548,7 +672,12 @@ export {default as theme} from './src/theme';
       }}
 	]}
 />
+<NotesList>
+  <li>Namespaces</li>  
+</NotesList>
+
 ---
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/selectors.ts").default}
   lang="typescript"
@@ -561,6 +690,11 @@ export {default as theme} from './src/theme';
       {lines: [13]},         
 	]}
 />
+<NotesList>
+  <li>const slice</li>  
+  <li>throw</li>  
+  <li>return</li>  
+</NotesList>
 ---
 
 # Actions
@@ -568,26 +702,32 @@ export {default as theme} from './src/theme';
 ---
 
 <CodeSurfer
-  code={require("!raw-loader!./snippets/types.ts").default}
+  code={require('!raw-loader!./snippets/types.ts').default}
   lang="typescript"
   showNumbers={false}
-	title="types.ts"
+  title="types.ts"
   dark={true}
-	steps={[
-			{range: [4,33]},
-			{range: [5,7]},
-	]}
+  steps={[{range: [4, 33]}, {range: [5, 7]}]}
 />
+
+<NotesList>
+  <li>Show Imports</li>
+  <li>Gifs types</li>
+</NotesList>
 ---
 # Tradeoff: Loss of modularization
-<Notes>
-  <ul>
-    <li>typescript just yells at you before you make your commit</li>
-    <li>its out of scope to talk about why this cant be done in a modular way</li>
-    <li>we need to coordinate to prevent conflicts</li>	
-  </ul>
-</Notes>
+<NotesList>
+  <li>We're rounding up all possible actions types</li>  
+  <li>
+    Actions are historically just functions but here we're collecting types
+  </li>
+  <li>It ends up being worth it</li>
+  <li>typescript just yells at you before you make your commit</li>
+  <li>we need to coordinate to prevent conflicts</li>	
+</NotesList>
+
 ---
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/types.ts").default}
   lang="typescript"
@@ -596,10 +736,20 @@ export {default as theme} from './src/theme';
   dark={true}
 	steps={[
 			{range: [57,65]},
-			{range: [86,91]},
+      {range: [86,91]},
+      {lines: [88]},
+      {lines: [87]},			
 			{range: [68,84]},
 	]}
 />
+<NotesList>
+  <li>Dispatch = ThunkDispatch + Store</li>    
+  <li>SlytherinStandardAction</li>
+  <li>slytherinId</li>
+  <li>type: AllActionTypes, this is all possible strings</li>
+  <li>AllActionTypes + AllActions, we've rounded up every string and shape</li>  
+  <li>Where are these coming from?</li>
+</NotesList>
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/gifs-types.ts").default}
@@ -612,12 +762,16 @@ export {default as theme} from './src/theme';
 			{range: [16,27]},
 	]}
 />
+<NotesList>
+  <li>GifActions</li>    
+  <li>FetchGifSuccess + FetchGifError</li>  
+</NotesList>
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/gifs-reducer.ts").default}
   lang="typescript"
   showNumbers={false}
-	title="gifs/reudcer.ts"
+	title="gifs/reducer.ts"
   dark={true}
 	steps={[			
 			{range: [6,9]},
@@ -626,22 +780,35 @@ export {default as theme} from './src/theme';
 	]}
 />
 ---
-# Typesafety is garaunteed by our single entrypoint for typescript
+# Back To Our Goals
 ---
-# What have we accomplished
-<ul>
-	<Appear>
-  	<li>We’ve codesplit our reducer</li>
-  	<li>We have these guarantees around soundness</li>
-  	<li>We have strong typing to prevent modules from clobbering each other</li>
-	</Appear>
-</ul>
+# Soundness
 ---
+# Developer Experience
+---
+# Developers need to know
+<AppearList>
+  <li>CodeSplitProvider garauntees reducers get registered</li>
+  <li>getStateAtNamespace ensures we fail fast if something goes wrong</li>
+  <li>types.ts ensures we never dispatch an action we can't handle</li>
+</AppearList>
+---
+
 # Thank You!
+
 ---
+
 <AboutMe />
-<Notes>
-	# References
-	https://en.wikipedia.org/wiki/List_of_countries_by_Internet_connection_speeds
-	https://mariusschulz.com/blog/typescript-2-4-dynamic-import-expressions
-</Notes>
+
+---
+
+# References
+
+<ul>
+  <li>
+    https://en.wikipedia.org/wiki/List_of_countries_by_Internet_connection_speeds
+  </li>
+  <li>
+    https://mariusschulz.com/blog/typescript-2-4-dynamic-import-expressions
+  </li>
+</ul>

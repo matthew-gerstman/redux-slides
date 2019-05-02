@@ -54,7 +54,12 @@ export default class Provider extends React.Component {
     const {children, mode, index, length, update} = this.props;
 
     if (mode !== modes.normal) {
-      return <Fragment>{children}</Fragment>;
+      return (
+        <Fragment>
+          <GlobalStyle />
+          {children}
+        </Fragment>
+      );
     }
 
     return (
