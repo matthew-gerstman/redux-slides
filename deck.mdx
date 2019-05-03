@@ -415,11 +415,11 @@ export {default as theme} from './src/theme';
 </Notes>
 ---
 # We should have strong runtime assertions to check data is there, so we can fail fast.
-<Notes>
-	- Feature, not a bug, that any given slice of the state may or may not be available when a selector is called.
-	- We need to isolate where failure modes can happen as a result of codesplitting
-	- We do not want developers to be able to call a selector if a namespace is not registered.
-</Notes>
+<NotesList>
+	<li>Feature, not a bug, that any given slice of the state may or may not be available when a selector is called.</li>
+	<li>We need to isolate where failure modes can happen as a result of codesplitting</li>
+	<li>We do not want developers to be able to call a selector if a namespace is not registered.</li>
+</NotesList>
 ---
 # Good developer experience
 <ul>
@@ -780,18 +780,48 @@ export {default as theme} from './src/theme';
 	]}
 />
 ---
+# Thats how it works
+---
 # Back To Our Goals
 ---
 # Soundness
 ---
 # Developer Experience
 ---
-# Developers need to know
-<AppearList>
+
+# CodeSplitProvider
+
+<NotesList>
   <li>CodeSplitProvider garauntees reducers get registered</li>
+</NotesList>
+---
+
+# getStateAtNamespace
+
+<NotesList>
   <li>getStateAtNamespace ensures we fail fast if something goes wrong</li>
+</NotesList>
+
+---
+
+# types.ts
+
+<NotesList>
   <li>types.ts ensures we never dispatch an action we can't handle</li>
-</AppearList>
+</NotesList>
+
+---
+
+# Code Available at
+
+https://github.com/matthew-gerstman/slytherin.dev
+
+---
+
+# Blog Post
+
+https://www.matthewgerstman.com/tech/redux-code-split-typecheck/
+
 ---
 
 # Thank You!
@@ -805,6 +835,9 @@ export {default as theme} from './src/theme';
 # References
 
 <ul>
+  <li>
+    https://mariusschulz.com/blog/typescript-2-4-dynamic-import-expressions
+  </li>
   <li>
     https://en.wikipedia.org/wiki/List_of_countries_by_Internet_connection_speeds
   </li>
