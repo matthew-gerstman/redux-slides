@@ -105,8 +105,8 @@ export {default as theme} from './src/theme';
 # Code split
 ---
 <div style={{height: 500}}>
-	<h2>One Big Synchronous Bundle</h2>
-	<img style={{height: "70%"}} src="assets/giant-bundle.png" />
+  <h2>One Big Synchronous Bundle</h2>
+  <img style={{height: "80%"}} src="assets/giant-bundle.svg" />
 </div>
 <Notes>
   <ul>
@@ -118,7 +118,7 @@ export {default as theme} from './src/theme';
 ---
 <div style={{height: 500}}>
 	<h2>Many Small Lazy Loaded Bundles</h2>
-	<img style={{marginTop: "10%", height: "30%"}} src="assets/multiple-bundles.png" />
+	<img style={{marginTop: "10%", height: "40%"}} src="assets/multiple-bundles.svg" />
 </div>
 <Notes>
   <ul>
@@ -203,7 +203,7 @@ export {default as theme} from './src/theme';
 ---
 <TallImage style={{padding: 50}} src="assets/redux.png" />
 ---
-<TallImage style={{padding: 10}} src="assets/data-flow.png" />
+<TallImage style={{padding: 10}} src="assets/data-flow.svg" />
 <Notes>
   <ul>
     <li>State - The dictionary/map (key/value) object that stores all of our data</li>
@@ -214,7 +214,7 @@ export {default as theme} from './src/theme';
   </ul>
 </Notes>
 ---
-<img style={{padding: 10, maxWidth:'100vw'}} src="assets/slices.png" />
+<img style={{padding: 10, maxWidth:'100vw'}} src="assets/slices.svg" />
 <Notes>
   <ul>
     <li>Root Reducer is the only reducer redux knows about</li>
@@ -235,8 +235,10 @@ export {default as theme} from './src/theme';
 	Swap tabs to live demo, only show what it does
 </Notes>
 ---
-<h2>Naive Implementation</h2>
-<img style={{maxHeight:'70vh'}} src="assets/naive-redux.png" />
+<div>
+  <h2>Naive Implementation</h2>
+  <img style={{maxHeight:'60vh'}} src="assets/naive-redux.svg" />
+</div>
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/naive.ts").default}
@@ -295,8 +297,10 @@ export {default as theme} from './src/theme';
   </ul>
 </Notes>
 ---
-<h2>Naive Implementation</h2>
-<img style={{maxHeight:'70vh'}} src="assets/naive-redux.png" />
+<div>
+  <h2>Naive Implementation</h2>
+  <img style={{maxHeight:'60vh'}} src="assets/naive-redux.svg" />
+</div>
 ---
 # Code Splitting
 ---
@@ -336,13 +340,15 @@ export {default as theme} from './src/theme';
   dark={true}
 />
 ---
-<TallImage src="assets/root-reducer.png" />
+<TallImage src="assets/root-reducer.svg" />
 <Notes>
   The root reducer is composed of every possible reducer we want to include
 </Notes>
 ---
 # Dropbox Scale
 ---
+<div style={{fontSize: '0.8em'}}>
+
 # We built this for Dropbox
 <AppearList>
     <li>📅 We had an ongoing performance initiative in 2017</li>
@@ -351,12 +357,13 @@ export {default as theme} from './src/theme';
 		<li>📘 Any given page might need a permutation of 5-10</li>
 		<li>🌎 NY, SEA, SF, TLV</li>
 </AppearList>
+</div>
 ---
 # This has to run on every page.
 ---
 # We can’t guarantee that single a reducer is never expensive.
 ---
-<TallImage src="assets/root-reducer.png" />
+<TallImage src="assets/root-reducer.svg" />
 <Notes>
   <ul>
     <li>Theres nothing stopping a single team from including all of lodash as a dependency in their reducer.</li>
@@ -368,23 +375,27 @@ export {default as theme} from './src/theme';
 # We’ve gotta figure out how to codesplit the reducer
 
 ---
-
-# Slytherin.dev
-
-<img style={{height: '60vh'}} src="assets/taylor.png" />
-<img style={{height: '60vh', marginLeft: '50px'}} src="assets/empty-store.png" />
+<div>
+  <h2>Slytherin.dev</h2>
+  <img style={{height: '65vh'}} src="assets/taylor.png" />
+  <img style={{height: '65vh', marginLeft: '50px'}} src="assets/empty-store.png" />
+</div>
 ---
-# Navigate to Twitter Page
-<img style={{height: '60vh'}} src="assets/taylor-tweets.png" />
-<img style={{height: '60vh', marginLeft: '50px'}} src="assets/state-twitter.png" />
+<div>
+  <h2>Navigate to Twitter Page</h2>
+  <img style={{height: '65vh'}} src="assets/taylor-tweets.png" />
+  <img style={{height: '65vh', marginLeft: '50px'}} src="assets/state-twitter.png" />
+</div>
 ---
-# Navigate to Gifs Page
-<div style={{display: 'flex', justifyContent: "center", margin: '0 auto'}}>
-  <div style={{background: '#036452', padding: 20, width: 'calc(30vw + 40px)'}}>
-    <img style={{width: '30vw'}} src="assets/taylor-side-eye.gif" />
-    <img style={{width: '30vw'}} src="assets/taylor-snakes.gif" />
+<div>
+  <h2>Navigate to Gifs Page</h2>
+  <div style={{display: 'flex', justifyContent: "center", margin: '20px auto'}}>
+    <div style={{background: '#005744', padding: 20, width: 'calc(30vw + 40px)'}}>
+      <img style={{width: '30vw'}} src="assets/taylor-side-eye.gif" />
+      <img style={{width: '30vw'}} src="assets/taylor-snakes.gif" />
+    </div>
+    <img style={{height: '60vh', marginLeft: '50px'}} src="assets/state-tweets-gifs.png" />
   </div>
-  <img style={{height: '60vh', marginLeft: '50px'}} src="assets/state-tweets-gifs.png" />
 </div>
 ---
 # What do we want to optimize for?
@@ -465,17 +476,19 @@ export {default as theme} from './src/theme';
 ---
 # Hows this work?
 ---
-<CodeSurfer
-  code={require("!raw-loader!./snippets/code-split-provider.tsx").default}
-  lang="typescript"
-  showNumbers={false}
-	title="provider.tsx"
-  dark={true}
-	steps={[
-    {range: [9, 18]},
-		{lines: [13, 16]},
-	]}
-/>
+<div style={{fontSize: '0.7em'}}>
+  <CodeSurfer
+    code={require("!raw-loader!./snippets/code-split-provider.tsx").default}
+    lang="typescript"
+    showNumbers={false}
+    title={() => (<h1 style={{marginBottom: -30, paddingTop: 30}}>provider.tsx</h1>)}
+    dark={true}
+    steps={[
+      {range: [9, 18]},
+      {lines: [13, 16]},
+    ]}
+  />
+</div>
 <NotesList>
 <li>Codesplit provider</li>
 <li>getStoreAndRegisterReducers + react/redux provider</li>
@@ -516,8 +529,10 @@ export {default as theme} from './src/theme';
 ---
 # What about typing?
 ---
-<h2>Runtime vs Compile Time</h2>
-<img style={{height: '70vh'}} src="assets/runtime-vs-compiletime.png" />
+<div>
+  <h2 style={{marginBottom: -10}}>Runtime vs Compile Time</h2>
+  <img style={{height: '75vh'}} src="assets/runtime-vs-compiletime.svg" />
+</div>
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/types.ts").default}
@@ -546,7 +561,7 @@ export {default as theme} from './src/theme';
   code={require("!raw-loader!./snippets/gifs-selectors.ts").default}
   lang="typescript"
   showNumbers={false}
-	title="gifs/selectors.ts"
+  title={() => (<h1 style={{marginBottom: -30, paddingTop: 30}}>gifs/selectors.ts</h1>)}
   dark={true}
 	steps={[
 			{range: [4,9]},
@@ -830,20 +845,20 @@ https://www.matthewgerstman.com/tech/redux-code-split-typecheck/
 
 ---
 
-# References
-
-<ul>
-  <li>
-    https://mariusschulz.com/blog/typescript-2-4-dynamic-import-expressions
-  </li>
-  <li>
-    https://en.wikipedia.org/wiki/List_of_countries_by_Internet_connection_speeds
-  </li>
-  <li>
-    https://mariusschulz.com/blog/typescript-2-4-dynamic-import-expressions
-  </li>
-</ul>
-
+<div>
+  <h1>References</h1>
+  <ul style={{fontSize: '0.9em'}}>
+    <li>
+      https://mariusschulz.com/blog/typescript-2-4-dynamic-import-expressions
+    </li>
+    <li>
+      https://en.wikipedia.org/wiki/List_of_countries_by_Internet_connection_speeds
+    </li>
+    <li>
+      https://mariusschulz.com/blog/typescript-2-4-dynamic-import-expressions
+    </li>
+  </ul>
+</div>
 ---
 
 # Thank You!

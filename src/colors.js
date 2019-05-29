@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const black = '#0a0b0f';
-export const darkGreen = '#036452';
+export const black = '#000000';
+export const darkGreen = '#005744';
 
 export default styled.div(
   [],

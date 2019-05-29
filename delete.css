@@ -1,0 +1,32 @@
+div {
+  /* types: ['changed'], */
+  color: rgb(180, 208, 231);
+  /* types: ['deleted'], */
+  color: rgba(173, 120, 13, 0.56);
+  /* types: ['inserted', 'attr-name'], */
+  color: rgb(162, 211, 155);
+  /* types: ['comment'], */
+  color: rgb(208, 208, 211);
+  /* types: ['string', 'url'], */
+  color: rgb(162, 211, 155);
+  /* types: ['variable'], */
+  color: rgb(255, 255, 255);
+  /* types: ['number'], */
+  color: rgb(247, 140, 108);
+  /* types: ['builtin', 'char', 'constant', 'function'], */
+  color: rgb(0, 97, 255);
+  /* types: ['punctuation'], */
+  color: rgb(129, 59, 246);
+  /* types: ['selector', 'doctype'], */
+  color: rgb(206, 180, 255);
+  /* types: ['class-name'], */
+  color: rgb(255, 216, 48);
+  /* types: ['tag', 'operator', 'keyword'], */
+  color: rgb(127, 219, 202);
+  /* types: ['boolean'], */
+  color: rgb(255, 88, 116);
+  /* types: ['property'], */
+  color: rgb(162, 211, 155);
+  /* types: ['namespace'], */
+  color: rgb(255, 203, 149);
+}
