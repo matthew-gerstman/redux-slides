@@ -36,12 +36,6 @@ export default function AboutMe() {
         </CenteredLi>
         <CenteredLi>
           <EmojiWrapper size="40px" marginRight="30px">
-            📒
-          </EmojiWrapper>
-          <a href="https://www.matthewgerstman.com">matthewgerstman.com</a>
-        </CenteredLi>
-        <CenteredLi>
-          <EmojiWrapper size="40px" marginRight="30px">
             📊
           </EmojiWrapper>
           <a href="https://slides.slytherin.dev">slides.slytherin.dev</a>

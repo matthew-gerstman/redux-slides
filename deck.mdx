@@ -195,6 +195,8 @@ export {default as theme} from './src/theme';
 ---
 <TallImage src="assets/obama-done-here.gif" />
 ---
+<TallImage src="assets/obama-bust.jpg" />
+---
 <Image style={{display: "flex", flexDirection: "column", justifyContent: "center"}} src="assets/matrix.gif">
 	<h1>Data Layer</h1>
 </Image>
@@ -582,13 +584,21 @@ export {default as theme} from './src/theme';
 	title="selectors.ts"
   dark={true}
 	steps={[
-			{range: [3,14]},
+      {range: [3,14]},
+      // Basic walkthrough
+      {lines: [7]},
+      {range: [9,11]},
+      {lines: [13]},
+      // Function signature
 			{range: [3,6]},
 			{lines: [4]},
 	]}
 />
 <NotesList>
   <li>getStateAtNamespace</li>
+  <li>const slice</li>
+  <li>throw</li>
+  <li>return</li>
   <li>Function Signature</li>
   <li>state: StoreShape</li>
 </NotesList>
@@ -657,7 +667,7 @@ export {default as theme} from './src/theme';
   dark={true}
 	steps={[
       {tokens: {1:[7], 3:[6,7,8,9,10], 5: [3], 6: [5], 7:[6, 14]}},
-      {tokens: {6: [3,4,5,6], 7:[4,5,6,7, 12,13,14]}},
+      {tokens: {6: [3,4,5,6], 7:[4,5,6,7, 12,13,14, 15]}},
 	]}
 />
 <NotesList>
