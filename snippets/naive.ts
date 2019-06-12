@@ -12,7 +12,7 @@ export type FullStore = {
   [YOUTUBE]: YoutubeNamespace;
 };
 
-type AllActions =
+type AllActions /* Discriminated Union */ =
   | FetchGifs
   | FetchMovies
   | FetchPodcasts /* Other Actions */;

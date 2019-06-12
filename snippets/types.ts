@@ -50,7 +50,7 @@ export type FullStore = {
 };
 export type StoreShape = Partial<FullStore>;
 
-export type NamespaceKey = keyof StoreShape;
+export type NamespaceKey = keyof StoreShape; /* Discriminated Union */
 export type ReducersMapObject = {
   [k in NamespaceKey]?: Reducer<StoreShape[k], AllActions>
 };

@@ -237,6 +237,32 @@ export {default as theme} from './src/theme';
 	Swap tabs to live demo, only show what it does
 </Notes>
 ---
+# Advanced Types
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/discriminated-union.ts").default}
+  lang="typescript"
+  showNumbers={false}
+  dark={true}
+  title="Discriminated Union"
+  steps={[
+    {},
+    {tokens: {2: [3], 3: [3], 4:[3]}}
+  ]}
+/>
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/generic.ts").default}
+  lang="typescript"
+  showNumbers={false}
+  dark={true}
+  title="Generics"
+  steps={[
+    {},
+    {tokens: {1: [2, 3, 4, 9, 13]}}
+  ]}
+/>
+---
 <div>
   <h2>Naive Implementation</h2>
   <img style={{maxHeight:'60vh'}} src="assets/naive-redux.svg" />
@@ -376,11 +402,6 @@ export {default as theme} from './src/theme';
 
 # We’ve gotta figure out how to codesplit the reducer
 ---
-# Demo: Back to Slytherin.dev
-<Notes>
-	Swap tabs to live demo, only show what it does
-</Notes>
----
 <div>
   <h2>Slytherin.dev</h2>
   <img style={{height: '65vh'}} src="assets/taylor.png" />
@@ -400,9 +421,15 @@ export {default as theme} from './src/theme';
       <img style={{width: '30vw'}} src="assets/taylor-side-eye.gif" />
       <img style={{width: '30vw'}} src="assets/taylor-snakes.gif" />
     </div>
-    <img style={{height: '60vh', marginLeft: '50px'}} src="assets/state-tweets-gifs.png" />
+    <img style={{height: '60vh', marginLeft: '50px'}} src="assets/state-tweets-gifs.svg" />
   </div>
 </div>
+---
+# Demo: Let's see it live.
+<Notes>
+	Swap tabs to live demo, show devtools
+</Notes>
+
 ---
 # What do we want to optimize for?
 ---
@@ -786,11 +813,13 @@ export {default as theme} from './src/theme';
 	steps={[
 			{range: [28,31]},
 			{range: [16,27]},
+      {range: [5,9]},
 	]}
 />
 <NotesList>
   <li>GifActions</li>
   <li>FetchGifSuccess + FetchGifError</li>
+  <li>Type Enum</li>
 </NotesList>
 ---
 <CodeSurfer
@@ -801,8 +830,13 @@ export {default as theme} from './src/theme';
   dark={true}
 	steps={[
 			{range: [6,9]},
+      {lines: [8]},
 			{range: [13,31]},
+      {lines: [14]},
 			{range: [14,19]},
+      {tokens: {17: [10, 11, 12, 13, 14]}},
+      {range: [14,19]},
+      {range: [13,31]},
 	]}
 />
 ---
