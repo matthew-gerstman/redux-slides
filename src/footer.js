@@ -29,15 +29,15 @@ export default ({children, height}) => (
       {children}
       <span>
         <EmojiWrapper size="1.5em" marginRight="10px">
-          🎧
+          📚
         </EmojiWrapper>
-        <a href="https://theconsolelog.com">The Console Log</a>
+        <a href="https://matthewgerstman.com">matthewgerstman.com</a>
       </span>
     </AlignedDiv>
 
     <AlignedDiv>
       <EmojiWrapper size="1.5em" marginRight="10px">
-        📒
+        📺
       </EmojiWrapper>
       <a href="https://slides.slyterin.dev">slides.slytherin.dev</a>
     </AlignedDiv>

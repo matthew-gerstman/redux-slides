@@ -25,18 +25,12 @@ export default function AboutMe() {
           NYC
         </CenteredLi>
         <CenteredLi>
-          <EmojiWrapper size="40px" marginRight="30px">
-            🎧
-          </EmojiWrapper>{' '}
-          <a href="https://theconsolelog.com">The Console Log</a>
-        </CenteredLi>
-        <CenteredLi>
           <Emoji size="40px" marginRight="30px" name="twitter.png" />
           <a href="https://twitter.com/MatthewGerstman">@MatthewGerstman</a>
         </CenteredLi>
         <CenteredLi>
           <EmojiWrapper size="40px" marginRight="30px">
-            📊
+            📺
           </EmojiWrapper>
           <a href="https://slides.slytherin.dev">slides.slytherin.dev</a>
         </CenteredLi>
